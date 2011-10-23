@@ -1,4 +1,19 @@
 <?php
+
+$file_to_up = getenv('TM_FILEPATH');
+
+if(substr($file_to_up, -5) == ".haml") {
+  $file_to_up = str_replace("_haml/", "", substr($file_to_up, 0, -5));
+}
+
+if(substr($file_to_up, -7) == ".coffee") {
+  $file_to_up = str_replace("_coffee/", "assets/", substr($file_to_up, 0, -7).".js");
+}
+
+if(substr($file_to_up, -5) == ".sass") {
+  $file_to_up = str_replace("_sass/", "assets/", substr($file_to_up, 0, -5));
+}
+
 $assetKey = calc_asset_key(getenv('TM_FILEPATH')); 
 
 //if its an image file, throw an error message.
